@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "everis-Car-App"
+    }
+  },
+  "defaultProject": "everis-Car-App",
+  "cli": {
+    "analytics": "a7bb2162-d5b4-4982-a679-e7bbeaf02772"
+  }
 }
