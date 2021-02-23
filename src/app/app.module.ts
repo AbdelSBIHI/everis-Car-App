@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateUpdateCarComponent } from './create-update-car/create-update-car.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [CarService,DatePipe],
   bootstrap: [AppComponent]

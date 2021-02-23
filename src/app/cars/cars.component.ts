@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Car } from '../models/car.model';
 import { CarService } from '../services/car.service';
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
   selector: 'app-cars',
@@ -9,29 +10,30 @@ import { CarService } from '../services/car.service';
   styleUrls: ['./cars.component.css']
 })
 export class CarsComponent implements OnInit {
+  
+  displayedColumns: string[] = ["id", "brand", "registration", "country","x"];
+  dataSource: MatTableDataSource<Car>;
+  cars: Car[];
 
-  cars :Car[];
-  private refreshSource = new BehaviorSubject<boolean>(false);
-  refresh = this.refreshSource.asObservable();
-
-  constructor(private carService :CarService ) { }
+  constructor(private carService: CarService) {}
 
   ngOnInit(): void {
     this.getCars();
   }
 
-  public setRefresh(refresh: boolean): void {
-    this.refreshSource.next(refresh)
-  }
-
   getCars(): void {
-    this.carService.getCars().subscribe(c => (this.cars = c.data));
+    this.carService.getCars().subscribe((res) => {
+      this.cars = res.data;
+      this.dataSource = new MatTableDataSource(this.cars);
+    });
+  
   }
 
   deleteCar(id:string){
-    this.carService.deleteCar(id).subscribe(()=> this.setRefresh(true));
+    this.carService.deleteCar(id);
   
   }
+
   
 
 }
