@@ -13,8 +13,20 @@ export class CarService {
     
   constructor(private httpClient: HttpClient) {}
 
-  getCars(){
-    return this.httpClient.get<Car[]>(this.API_URL);
+  getCars(page: number, size: number,sort?:string, orderBy?: string ,filterBy?: string) {
+    let query = `${this.API_URL}?page=${page}&size=${size}`;
+
+    if (sort != null && sort != "") {
+      query += `&sort=${sort}`;
+    }
+    
+    if (filterBy != null && filterBy != "") {
+      query += `&filterBy=${filterBy}`;
+    }
+    if (orderBy != null && orderBy != "") {
+      query += `&orderBy=${orderBy}`;
+    }
+    return this.httpClient.get<any>(query);
   }
 
   getCar(id: string) {
