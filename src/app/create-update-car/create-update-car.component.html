@@ -1,0 +1,14 @@
+
+    <h4>{{ title }}</h4>
+  
+    <form [formGroup]="form" (submit)="saveCar()">
+      <div class="form-group">
+          <label for="brand">Brand</label>
+          <input name="brand" formControlName="brand" />
+          <label for="brand">Brand</label>
+          <inputtype="date" formControlName="registration"   />
+          <label for="country">Country</label>
+          <input  name="country" formControlName="country" />
+          <button type="submit" class="btn example-button-row" >Submit</button>
+        </div>   
+    </form>
